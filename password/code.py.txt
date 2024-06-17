@@ -1,0 +1,27 @@
+import random
+import string
+
+def generate_password(length):
+    characters = string.ascii_letters + string.digits + string.punctuation
+    return ''.join(random.choice(characters) for _ in range(length))
+
+def main():
+    num_passwords = int(input("How many passwords do you want to generate? "))
+    print(f"Generating {num_passwords} passwords")
+
+    passwords = []
+    for i in range(num_passwords):
+        while True:
+            length = int(input(f"Enter the length of Password #{i + 1}: "))
+            if length < 3:
+                print("Minimum length of password should be 3")
+            else:
+                break
+        passwords.append(generate_password(length))
+
+    print("\nGenerated Passwords:")
+    for i, password in enumerate(passwords, 1):
+        print(f"Password #{i}: {password}")
+
+if __name__ == "__main__":
+    main()
